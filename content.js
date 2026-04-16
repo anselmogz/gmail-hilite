@@ -1,15 +1,15 @@
 (function () {
 
+  let started = false;
+
   function readEmailDataFromRow(row) {
     // Unread: Gmail adds class 'zE' to unread rows
     const isUnread = row.classList.contains('zE');
 
     // Starred: the star toggle element has aria-label="Starred" when starred,
-    // "Not starred" when not. Look for the starred variant.
-    const starEl = row.querySelector('[aria-label="Starred"]');
-    const notStarEl = row.querySelector('[aria-label="Not starred"]');
-    // If ONLY the "Starred" label exists (not "Not starred"), the email is starred
-    const isStarred = !!starEl && !notStarEl;
+    // "Not starred" when not. Query for either and check the actual label value.
+    const starEl = row.querySelector('[aria-label="Starred"], [aria-label="Not starred"]');
+    const isStarred = !!starEl && starEl.getAttribute('aria-label') === 'Starred';
 
     // Labels: Gmail renders label chips with class 'av' and a data-tooltip
     const labelEls = row.querySelectorAll('.av[data-tooltip]');
@@ -52,6 +52,8 @@
   }
 
   function start() {
+    if (started) return;
+    started = true;
     const main = document.querySelector('div[role="main"]');
     if (!main) { setTimeout(start, 500); return; }
 

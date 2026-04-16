@@ -62,7 +62,7 @@ describe('applyHighlightToRow', () => {
     });
   });
 
-  test('skips rows without data-thread-id (no crash)', done => {
+  test('does not throw on rows without explicit thread-id attribute', done => {
     const row = makeRow({ starred: false }); // no threadId — but still appended
     chrome.storage.sync._store.highlightGmailSettings = HighlightGmail.DEFAULT_SETTINGS;
     // Should not throw
