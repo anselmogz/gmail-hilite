@@ -4,6 +4,10 @@ const chrome = {
   storage: {
     sync: {
       get(keys, callback) {
+        if (keys === null) {
+          callback({ ...storage });
+          return;
+        }
         const defaults = typeof keys === 'object' && !Array.isArray(keys) ? keys : {};
         const result = {};
         const queryKeys = Array.isArray(keys) ? keys : typeof keys === 'string' ? [keys] : Object.keys(defaults);
