@@ -1,0 +1,19 @@
+# Source files not needed in the published extension
+icons/*.psd
+
+# Development files
+node_modules/
+tests/
+package.json
+package-lock.json
+jest.config.js
+.gitignore
+.crxignore
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Superpowers / docs
+.superpowers/
+docs/

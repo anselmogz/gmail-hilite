@@ -9,22 +9,21 @@
     header h1 { font-size: 14px; font-weight: 600; }
     header p { font-size: 11px; opacity: 0.85; }
     .body { padding: 14px 16px; }
-    .section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: #888; margin-bottom: 8px; }
-    .condition-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-    .condition-left { display: flex; align-items: center; gap: 8px; }
-    .condition-controls { display: flex; align-items: center; gap: 6px; }
-    .priority-badge { font-size: 10px; background: #e8f0fe; color: #1565c0; border-radius: 10px; padding: 1px 7px; }
+    .section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 10px; }
+    .section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: #888; }
+    .section-hint { font-size: 10px; color: #bbb; }
     .divider { border: none; border-top: 1px solid #f0f0f0; margin: 12px 0; }
-    .rules-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
     #rules-list { list-style: none; margin-bottom: 6px; }
-    .rule-item { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 6px; padding: 8px 10px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; cursor: grab; }
+    .rule-item { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 6px; padding: 7px 8px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
     .rule-item.dragging { opacity: 0.5; }
     .rule-item.drag-over { border-color: #1a73e8; }
-    .rule-drag-handle { color: #ccc; cursor: grab; user-select: none; }
+    .rule-drag-handle { color: #ccc; cursor: grab; user-select: none; flex-shrink: 0; }
     .rule-info { flex: 1; min-width: 0; }
     .rule-name { font-weight: 500; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .rule-type { font-size: 10px; color: #888; }
-    .rule-delete { color: #999; cursor: pointer; font-size: 18px; line-height: 1; border: none; background: none; padding: 0 2px; }
+    .rule-delete { color: #bbb; cursor: pointer; font-size: 18px; line-height: 1; border: none; background: none; padding: 0 2px; flex-shrink: 0; }
+    .rule-delete:hover { color: #c62828; }
+    .rule-builtin-badge { font-size: 9px; color: #aaa; background: #efefef; border-radius: 3px; padding: 1px 4px; flex-shrink: 0; }
     .add-rule-btn { border: 1px dashed #1a73e8; border-radius: 6px; padding: 7px 10px; text-align: center; color: #1a73e8; cursor: pointer; font-size: 12px; font-weight: 500; margin-bottom: 14px; background: none; width: 100%; }
     #add-rule-form { display: none; background: #f0f4ff; border: 1px solid #c5d4f5; border-radius: 6px; padding: 10px; margin-bottom: 10px; }
     #add-rule-form label { display: block; font-size: 11px; color: #555; margin-bottom: 4px; }
@@ -35,8 +34,12 @@
     .btn-secondary { background: #fff; color: #555; border: 1px solid #dadce0; border-radius: 4px; padding: 5px 12px; font-size: 12px; cursor: pointer; }
     #save-btn { width: 100%; background: #1a73e8; color: #fff; border: none; border-radius: 6px; padding: 9px; font-size: 13px; font-weight: 500; cursor: pointer; }
     #save-btn:hover { background: #1557b0; }
-    input[type=color] { width: 28px; height: 28px; border: 1px solid #dadce0; border-radius: 4px; cursor: pointer; padding: 2px; }
-    input[type=checkbox] { accent-color: #1a73e8; }
+    input[type=color] { width: 26px; height: 26px; border: 1px solid #dadce0; border-radius: 4px; cursor: pointer; padding: 2px; flex-shrink: 0; }
+    input[type=checkbox] { accent-color: #1a73e8; flex-shrink: 0; }
+    .color-pair { display: flex; align-items: center; gap: 3px; flex-shrink: 0; }
+    .text-color-wrap { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .color-pair-label { font-size: 9px; color: #aaa; text-align: center; line-height: 1; }
+    .text-color-wrap input[type=color]:disabled { opacity: 0.3; cursor: default; }
     #toast { display: none; background: #323232; color: #fff; font-size: 12px; text-align: center; padding: 8px; position: fixed; bottom: 0; left: 0; right: 0; border-radius: 0 0 8px 8px; }
   </style>
 </head>
@@ -53,37 +56,9 @@
   </header>
 
   <div class="body">
-    <p class="section-label">Conditions</p>
-
-    <div class="condition-row">
-      <div class="condition-left">
-        <span>⭐</span>
-        <span style="font-weight:500;">Starred</span>
-        <span class="priority-badge" style="background:#e8f5e9;color:#2e7d32;">Priority 1</span>
-      </div>
-      <div class="condition-controls">
-        <input type="color" id="starred-color">
-        <input type="checkbox" id="starred-toggle">
-      </div>
-    </div>
-
-    <div class="condition-row">
-      <div class="condition-left">
-        <span>🔵</span>
-        <span style="font-weight:500;">Unread</span>
-        <span class="priority-badge">Priority 2</span>
-      </div>
-      <div class="condition-controls">
-        <input type="color" id="unread-color">
-        <input type="checkbox" id="unread-toggle">
-      </div>
-    </div>
-
-    <hr class="divider">
-
-    <div class="rules-header">
-      <p class="section-label" style="margin-bottom:0;">Label / Sender Rules</p>
-      <span class="priority-badge">Priority 3+</span>
+    <div class="section-header">
+      <p class="section-label">Priority Rules</p>
+      <span class="section-hint">first match wins · drag to reorder</span>
     </div>
 
     <ul id="rules-list"></ul>
@@ -93,12 +68,31 @@
       <select id="new-rule-type">
         <option value="label">Gmail Label</option>
         <option value="sender">Sender domain or email</option>
+        <option value="star-type">Star type</option>
       </select>
       <label id="new-rule-value-label">Label name</label>
       <input type="text" id="new-rule-value" placeholder="e.g. Work">
+      <select id="new-rule-star-type" style="display:none;">
+        <option value="star">⭐ Yellow star (default)</option>
+        <option value="blue-star">🔵 Blue star</option>
+        <option value="red-bang">❗ Red bang</option>
+        <option value="orange-guillemet">» Orange guillemet</option>
+        <option value="green-check">✅ Green check</option>
+        <option value="purple-question">❓ Purple question</option>
+        <option value="red-star">★ Red star</option>
+        <option value="orange-star">★ Orange star</option>
+        <option value="green-star">★ Green star</option>
+        <option value="blue-info">ℹ Blue info</option>
+        <option value="yellow-bang">❕ Yellow bang</option>
+      </select>
       <div class="form-row">
-        <label style="margin-bottom:0;">Color</label>
+        <label style="margin-bottom:0;">Bg color</label>
         <input type="color" id="new-rule-color" value="#fffde7">
+      </div>
+      <div class="form-row">
+        <label style="margin-bottom:0;">Text color</label>
+        <input type="color" id="new-rule-text-color" value="#000000" disabled>
+        <input type="checkbox" id="new-rule-text-enabled">
       </div>
       <div class="form-actions">
         <button class="btn-primary" id="add-rule-confirm">Add</button>

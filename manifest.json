@@ -19,7 +19,7 @@
   "content_scripts": [
     {
       "matches": ["https://mail.google.com/*"],
-      "js": ["vendor/gmail.js", "src/storage.js", "src/highlighter.js", "content.js"],
+      "js": ["src/storage.js", "src/highlighter.js", "content.js"],
       "run_at": "document_end"
     }
   ],
