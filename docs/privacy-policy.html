@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Gmail Highlighter</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #333;
+      background: #fafafa;
+      padding: 48px 24px;
+    }
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 12px;
+      padding: 48px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      background: #1a73e8;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+    .logo-text { font-size: 18px; font-weight: 600; color: #1a73e8; }
+    h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+    .updated { font-size: 13px; color: #888; margin-bottom: 36px; }
+    h2 { font-size: 16px; font-weight: 600; margin: 28px 0 8px; color: #111; }
+    p { margin-bottom: 12px; color: #444; }
+    ul { margin: 8px 0 12px 20px; color: #444; }
+    ul li { margin-bottom: 6px; }
+    .highlight-box {
+      background: #e8f5e9;
+      border-left: 4px solid #34a853;
+      border-radius: 4px;
+      padding: 14px 18px;
+      margin: 24px 0;
+      font-weight: 500;
+      color: #1b5e20;
+    }
+    a { color: #1a73e8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      font-size: 13px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="logo">
+      <div class="logo-mark">✉️</div>
+      <div class="logo-text">Gmail Highlighter</div>
+    </div>
+
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: April 17, 2026</p>
+
+    <div class="highlight-box">
+      Gmail Highlighter does not collect, transmit, or store any personal data on any server. All data stays on your device.
+    </div>
+
+    <h2>What the extension does</h2>
+    <p>Gmail Highlighter reads your Gmail inbox to identify email attributes (starred status, read/unread state, labels, and sender address) and applies background and text color highlights to inbox rows based on rules you configure. This processing happens entirely within your browser.</p>
+
+    <h2>Data we collect</h2>
+    <p>We collect <strong>nothing</strong>. Specifically:</p>
+    <ul>
+      <li>No email content is read or stored</li>
+      <li>No sender names or email addresses are stored or transmitted</li>
+      <li>No browsing history is recorded</li>
+      <li>No analytics or telemetry are collected</li>
+      <li>No third-party tracking scripts are included</li>
+    </ul>
+
+    <h2>Your settings</h2>
+    <p>The highlight rules and colors you configure are saved using <strong>Chrome's built-in <code>chrome.storage.sync</code> API</strong>. This means:</p>
+    <ul>
+      <li>Your settings are stored locally in your Chrome profile</li>
+      <li>Chrome may sync them across your own signed-in devices via your Google account — this sync is handled entirely by Google/Chrome, not by this extension</li>
+      <li>Your settings never leave your devices via this extension</li>
+    </ul>
+
+    <h2>Permissions</h2>
+    <p>The extension requests two permissions:</p>
+    <ul>
+      <li><strong>storage</strong> — to save your highlight rule preferences locally</li>
+      <li><strong>host access to mail.google.com</strong> — to read inbox row attributes (starred, unread, labels) and apply highlight styles</li>
+    </ul>
+    <p>Neither permission is used to collect or transmit data.</p>
+
+    <h2>Third-party services</h2>
+    <p>Gmail Highlighter does not use any third-party services, APIs, or analytics platforms.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>If this policy changes, the updated version will be posted at this URL with a revised date.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about this privacy policy? Open an issue on the <a href="https://github.com/anselmogz/highlight-gmail" target="_blank">GitHub repository</a>.</p>
+
+    <footer>
+      Gmail Highlighter is an open-source project. &nbsp;·&nbsp;
+      <a href="https://github.com/anselmogz/highlight-gmail" target="_blank">View source on GitHub</a>
+    </footer>
+
+  </div>
+</body>
+</html>
