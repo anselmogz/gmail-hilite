@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Gmail Highlighter",
+  "name": "GMail Hilite",
   "version": "1.0.0",
-  "description": "Highlight Gmail inbox rows by starred, unread, and label/sender rules.",
+  "description": "Highlight Gmail inbox rows by starred status, star type, unread state, labels, and sender — with fully customizable colors.",
   "permissions": ["storage"],
   "host_permissions": ["https://mail.google.com/*"],
   "background": {
